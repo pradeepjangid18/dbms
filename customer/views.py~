@@ -1,0 +1,74 @@
+from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login , logout
+from django.http import HttpResponseRedirect, HttpResponse
+import MySQLdb
+from django.contrib.auth.decorators import login_required
+# Create your views here.
+
+db=MySQLdb.connect("localhost","root","45201017","db1")
+cr=db.cursor()
+
+
+def home(request) :
+	return render(request,'customer/home.html')
+
+
+def login(request) :
+	return render(request,'customer/login.html')
+
+def register(request) :
+	return render(request,'customer/register.html')
+
+
+def appointment(request) :
+	return render(request,'customer/appointment.html')
+
+
+def register_done(request) :
+	if request.method == 'POST' :
+		name=request.POST['name']
+		email=request.POST['E-mail']
+		mobileno=request.POST['mob']
+		address1=request.POST['addr1']
+		city=request.POST['city']
+		postcode=request.POST['code']
+		state=request.POST['state']
+		password=request.POST['password']
+		q1="""select Email from customer_database where Email='%s' """ %(email)
+		q2="""select Mobile_No from customer_database where Mobile_No='%s' """ %(mobileno)
+		cr.execute(q1)
+		r1=cr.fetchall()
+		cr.execute(q2)
+		r2=cr.fetchall()
+		if len(r1)!=0 and len(r2)!=0 :
+			return render(request,'customer/mob_email_reg.html')
+		elif len(r1)!=0 :
+			return render(request,'customer/email_reg.html')
+		elif len(r2)!=0 :
+			return render(request,'customer/mob_reg.html')
+		else :
+			cr.execute("""insert into customer_database(Name,Email,Mobile_No,Address1,city,post_code,state,password) values('%s','%s','%s','%s','%s','%s','%s','%s')""" %(name,email,mobileno,address1,city,postcode,state,password))
+			db.commit()
+			return render(request,'customer/reg_done.html')
+
+
+def login_customer(request) :
+	if request.method == 'POST' :
+		Mobno=request.POST['Mobno']
+		password=request.POST['password']
+		q1="""select * from customer_database where Mobile_No='%s' and password='%s' """ %(Mobno,password)
+		cr.execute(q1)
+		r1=cr.fetchall()
+		if len(r1) != 0 :
+			
+			return render(request,'customer/appointment.html')
+		else :
+			print "Invalid login details: {0}, {1}".format(Mobno,password)
+			return HttpResponse("Invalid login details supplied.")
+
+
+
+
+
+

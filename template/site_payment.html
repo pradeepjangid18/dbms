@@ -1,0 +1,161 @@
+<html>
+<head>
+
+
+	<title> </title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/home1.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!link rel="stylesheet" href="international/catalog/view/javascript/bootstrap/css/bootstrap.min.css">
+	<!link rel="stylesheet" href="international/catalog/view/javascript/font-awesome/css/font-awesome.min.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+</head>
+<body>
+
+
+<div class="main-header">
+		<div class="header-1">
+			<div id="drp1" class="h1-ele drop-container">
+			<span ><i class="fa fa-user hidden-xs
+
+			"></i> My Account</span> <span class="fa fa-caret-down"></span>
+				<div id="drp2" class="dropdown-menu">
+					<ul id="list_style">
+						<li><i class="fa fa-smile-o"> Admin </i></li>
+						<li><a href="/home/logout" style="text-decoration:none;color:black;"><i class="fa fa-sign-out"></i> Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+		<div class="header-2">
+			<h2 style="color: #2f4f4f;"><i> DHARMENDRA FURNITURE CONTRACTOR </i> </h2>
+		</div>
+</div>
+
+
+<nav class="navbar navbar-inverse">
+										<div class="container-fluid">
+										<div class="navbar-header">
+										</div>
+												<ul class="nav navbar-nav">
+													<li><a href="/supadmin/home"><span><strong>Home</strong></span></a></li>
+													<li><a href="/supadmin/home/appoint_come">  <strong>APPOINTMENT_PENDING </strong> </a></li>
+													<li class="dropdown">
+													<a class="dropdown-toggle" data-toggle="dropdown" href="#"> <strong>SITE_INFO </strong><span class="caret"></span></a>
+													<ul class="dropdown-menu">
+														<li><a href="/supadmin/home/site_all">  <strong>All_Sites </strong></a></li>
+														<li>
+														<form method="POST" action="/supadmin/home/site_filter/">
+														{% csrf_token %}
+														<strong>Mob:</strong>
+														<input type="text" name="mob" >
+														<input type="submit" value=" Filter " name="mobno">
+														</form>
+
+														</li>
+													</ul>
+													</li>
+													<li><a href="/supadmin/home/add_employee"><strong>Add Employee</strong></a></li>
+													<li class="dropdown">
+													<a class="dropdown-toggle" data-toggle="dropdown" href="#"> <strong>Employee_INFO </strong><span class="caret"></span></a>
+													<ul class="dropdown-menu">
+														<li><a href="/supadmin/home/employee_all">  <strong>All_Employee </strong></a></li>
+														<li>
+														<form method="POST" action="/supadmin/home/employee_filter/">
+														{% csrf_token %}
+														<strong>Mob:</strong>
+														<input type="text" name="mob" >
+														<input type="submit" value=" Filter " name="mobno">
+														</form>
+
+														</li>
+													</ul>
+													</li>
+													<li><a href="/supadmin/home/employee_query"><strong>Employee Query</strong></a></li>
+													<li><a href="/supadmin/home/customer_query"><strong>Customer Query</strong></a></li>
+													<li><a href="/supadmin/home/catalog"><strong>Catalog</strong></a></li>
+												</ul>
+										</div>
+										</nav>
+
+
+
+
+
+
+<div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Payment_ID</th>
+        <th>Money Taken</th>
+        <th>Date Of Taken</th>
+      </tr>
+    </thead>
+    {% for row in payment %}
+    <tbody>
+      <tr>
+        <td>{{ row.0 }}</td>
+        <td>{{ row.1 }}</td>
+        <td>{{ row.2 }}</td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	
+	$(document).ready(function(){
+		$('#drp1').mouseenter(function(){
+			$('#drp2').css('display','block');
+		});
+		$('#drp2').mouseleave(function(){
+			$('#drp2').css('display','none');
+		});
+	});
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/home1.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!link rel="stylesheet" href="international/catalog/view/javascript/bootstrap/css/bootstrap.min.css">
+	<!link rel="stylesheet" href="international/catalog/view/javascript/font-awesome/css/font-awesome.min.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+
+		<div class="main-header">
+		<div class="header-1">
+			<div id="drp1" class="h1-ele drop-container">
+			<span ><i class="fa fa-user hidden-xs
+
+			"></i> My Account</span> <span class="fa fa-caret-down"></span>
+				<div id="drp2" class="dropdown-menu">
+					<ul id="list_style">
+						<li><a href="/home/register" style="text-decoration:none; color:black;"><i class="fa fa-user"></i> Register</a></li>
+						<li><a href="/home/login" style="text-decoration:none;color:black;"><i class="fa fa-pencil-square-o"></i> Login</a></li>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+		<div class="header-2">
+			<h2 style="color: #2f4f4f;"><i> DHARMENDRA FURNITURE CONTRACTOR </i> </h2>
+		</div>
+</div>
+
+
+
+
+
+<nav class="navbar navbar-inverse">
+										<div class="container-fluid">
+										<div class="navbar-header">
+										</div>
+												<ul class="nav navbar-nav">
+													<li><a href="/home"><span><strong>Home</strong></span></a></li>
+													<li class="dropdown">
+													<a class="dropdown-toggle" data-toggle="dropdown" href="#"> <strong>CATALOG </strong><span class="caret"></span></a>
+													<ul class="dropdown-menu">
+														<li><a href="cat_l_r.html">  <strong>Living Room </strong></a></li>
+														<li><a href="cat_kit.html">  <strong>Kitchen </strong></a></li>
+														<li><a href="cat_b_r.html">  <strong>Bedroom </strong></a></li>
+														<li><a href="cat_k_r.html">  <strong>Kid room </strong></a></li>
+														<li><a href="cat_off.html">  <strong>Office </strong></a></li>
+													</ul>
+													</li>
+													<li><a href="/home/appointment">  <strong>APPOINTMENT </strong> </a></li>
+													<li><a href="#contact">  <strong>CONTACT  </strong></a></li>
+												</ul>
+										</div>
+										</nav>
+
+
+
+
+
+
+
+
+
+<script>
+// Automatic Slideshow - change image every 3 seconds
+	
+	$(document).ready(function(){
+		$('#drp1').mouseenter(function(){
+			$('#drp2').css('display','block');
+		});
+		$('#drp2').mouseleave(function(){
+			$('#drp2').css('display','none');
+		});
+	});
+
+
+</script>
+
+
+<div class="container">
+		<h3>New Customer</h3><hr>
+		<h4>Register Acoount</h4>
+		<h4>By creating an account you will be able to shop, take appointment and be up to date on an status.</h4>
+		<a href="/home/register" class="btn btn-info"> Register for customer only </a>
+	
+	<div class="row">
+		<div class="col-sm-4">
+		<form method="post" action="/home/loggedin/">
+		{% csrf_token %}
+			<fieldset>
+				<legend><h2><i>For Customer : -</i></h2><h6>I have an account</h6></legend>
+				<div class="row">
+					<div class="col-sm-4"><label><b>Mobile No. </b></label></div>
+					<div class="col-sm-8"><input type="text" name="Mobno" style="width:60%;background-color:lightgrey" required minlength="10" maxlength="10"></div>
+					<br><br>
+					<div class="col-sm-4"><label><b>Password </b></label></div>
+					<div class="col-sm-8"><input type="password" name="password" style="width:60%;background-color:lightgrey" required></div>
+					<br><br>
+					<button type="submit" class="btn btn-info">SUBMIT </button><br/>
+					<br><br>
+				</div>
+			</fieldset>
+		</form>
+		</div>
+		<div class="col-sm-4">
+		<form method="post" action="/employee/home/">
+		{% csrf_token %}
+			<fieldset>
+				<legend><h2><i>For workers :- </i></h2></legend>
+				<div class="row">
+					<div class="col-sm-4"><label><b>Mobile No. </b></label></div>
+					<div class="col-sm-8"><input type="text" name="Mobno" style="width:60%;background-color:lightgrey" required minlength="10" maxlength="10"></div>
+					<br><br>
+					<div class="col-sm-4"><label><b>Password </b></label></div>
+					<div class="col-sm-8"><input type="password" name="password" style="width:60%;background-color:lightgrey" required></div>
+					<br><br>
+					<button type="submit" class="btn btn-info">SUBMIT </button><br/>
+					<br><br>
+				</div>
+			</fieldset>
+		</form>
+		</div>
+		<div class="col-sm-4">
+		<form method="post" action="/supadmin/home/">
+		{% csrf_token %}
+			<fieldset>
+				<legend><h2><i>For admin :-</i></h2></legend>
+				<div class="row">
+					<div class="col-sm-4"><label><b>Mobile No. </b></label></div>
+					<div class="col-sm-8"><input type="text" name="Mobno" style="width:60%;background-color:lightgrey" required minlength="10" maxlength="10"></div>
+					<br><br>
+					<div class="col-sm-4"><label><b>Password </b></label></div>
+					<div class="col-sm-8"><input type="password" name="password" style="width:60%;background-color:lightgrey" required></div>
+					<br><br>
+					<button type="submit" class="btn btn-info">SUBMIT </button><br/>
+					<br><br>
+				</div>
+			</fieldset>
+		</form>
+		</div>
+
+
+
+	</div>
+</div>
+
+
+
+<footer style="background-color:grey"><br />
+<div class="container" id="contact">
+<div class="row">
+	<div class="col-sm-6">
+		<h2>Dharmendra Furniture
+		<br/>
+		Contractor
+		<hr></h2>
+		<h4>
+
+		<span class="glyphicon glyphicon-envelope"> dharmendrajangir63@gmail.com</span>
+		<br/>
+		<br/>
+		CALL OR WHATSAPP :
+		<br/><br/>
+		<span class="glyphicon glyphicon-phone"> 9826585403</span>
+		</h4>
+	</div>
+
+	<div class="col-sm-6">
+		<form method="post" action="/home/query/">
+		{% csrf_token %}
+		<fieldset>
+			<legend><h2>Contact Form</h2></legend>
+			<div class="row">
+				<div class="col-sm-4"><label><b>Enquiry </b></label></div><div ><textarea name="enquiry" style="width:50%;" rows="5" required></textarea></div><button type="submit" class="btn btn-info">SUBMIT </button><br/>
+		</div></fieldset></form>
+	</div>
+
+</div>
+</div>
+<br />
+<br />
+<br /> <br /> <br />
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

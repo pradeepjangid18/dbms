@@ -1,0 +1,11 @@
+from django.conf.urls import url
+from . import views
+
+urlpatterns=[
+	url(r'^home$',views.home,name='home'),
+	url(r'^home/login$',views.login,name='login'),
+	url(r'^home/register$',views.register,name='register'),
+	url(r'^home/appointment$',views.appointment,name='appointment'),
+	url(r'^register_done/$',views.register_done,name='register_done'),
+	url(r'^login_customer/$',views.login_done,name='login_done'),
+]

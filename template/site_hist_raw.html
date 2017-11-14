@@ -1,0 +1,188 @@
+<html>
+<head>
+
+
+	<title> </title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/home1.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+</head>
+<body>
+
+<div class="main-header">
+		<div class="header-1">
+			<div id="drp1" class="h1-ele drop-container">
+			<span ><i class="fa fa-user hidden-xs
+
+			"></i> My Account</span> <span class="fa fa-caret-down"></span>
+				<div id="drp2" class="dropdown-menu">
+					<ul id="list_style">
+						{% if login_logout %}
+						<li><i class="fa fa-smile-o"> {{ name }} </i></li>
+						<li><a href="/home/logout" style="text-decoration:none;color:black;"><i class="fa fa-sign-out"></i> Logout</a></li>
+						{% else %}
+						<li><a href="/home/register" style="text-decoration:none; color:black;"><i class="fa fa-user"></i> Register</a></li>
+						<li><a href="/home/login" style="text-decoration:none;color:black;"><i class="fa fa-pencil-square-o"></i> Login</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+		<div class="header-2">
+			<h2 style="color: #2f4f4f;"><i> DHARMENDRA FURNITURE CONTRACTOR </i> </h2>
+		</div>
+</div>
+
+
+
+
+
+<nav class="navbar navbar-inverse">
+										<div class="container-fluid">
+										<div class="navbar-header">
+										</div>
+												<ul class="nav navbar-nav">
+													<li><a href="/home"><span><strong>Home</strong></span></a></li>
+													<li class="dropdown">
+													<a class="dropdown-toggle" data-toggle="dropdown" href="#"> <strong>CATALOG </strong><span class="caret"></span></a>
+													<ul class="dropdown-menu">
+														<li><a href="/home/cat_l_r">  <strong>Living Room </strong></a></li>
+														<li><a href="/home/cat_kit">  <strong>Kitchen </strong></a></li>
+														<li><a href="/home/cat_b_r">  <strong>Bedroom </strong></a></li>
+														<li><a href="/home/cat_k_r">  <strong>Kid room </strong></a></li>
+														<li><a href="/home/cat_off">  <strong>Office </strong></a></li>
+													</ul>
+													</li>
+													<li><a href="/home/appointment">  <strong>APPOINTMENT </strong> </a></li>
+													{% if login_logout %}
+													<li><a href="/home/appointment_history">  <strong>APPOINTMENT_HISTORY </strong> </a></li>
+													<li><a href="/home/site_history">  <strong>SITE_INFO </strong> </a></li>
+													<li><a href="/home/query_asked">  <strong>Query Asked </strong> </a></li>
+													{% endif %}
+
+													<li><a href="#contact">  <strong>CONTACT  </strong></a></li>
+												</ul>
+										</div>
+										</nav>
+
+
+
+
+
+<div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product_ID</th>
+        <th>Product Name</th>
+        <th>Date_of_Supply</th>
+        <th>Quantity</th>
+        <th>Bill_Amount</th>
+        <th>Image of Bill</th>	
+      </tr>
+    </thead>
+    {% for row in raw_info %}
+    <tbody>
+      <tr>
+        <td>{{ row.0 }}</td>
+        <td>{{ row.1 }}</td>
+        <td>{{ row.2 }}</td>
+        <td>{{ row.3 }}</td>
+        <td>{{ row.4 }}</td>
+        <td><image src="data:image/png;base64,{{ row.5 }}" style="width:300px;height:310px"></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	
+	$(document).ready(function(){
+		$('#drp1').mouseenter(function(){
+			$('#drp2').css('display','block');
+		});
+		$('#drp2').mouseleave(function(){
+			$('#drp2').css('display','none');
+		});
+	});
+
+
+</script>
+
+
+
+
+<footer style="background-color:grey"><br />
+<div class="container" id="contact">
+<div class="row">
+	<div class="col-sm-6">
+		<h2>Dharmendra Furniture
+		<br/>
+		Contractor
+		<hr></h2>
+		<h4>
+
+		<span class="glyphicon glyphicon-envelope"> dharmendrajangir63@gmail.com</span>
+		<br/>
+		<br/>
+		CALL OR WHATSAPP :
+		<br/><br/>
+		<span class="glyphicon glyphicon-phone"> 9826585403</span>
+		</h4>
+	</div>
+
+	<div class="col-sm-6">
+		<form method="post" action="/home/query/">
+		{% csrf_token %}
+		<fieldset>
+			<legend><h2>Contact Form</h2></legend>
+			<div class="row">
+				<div class="col-sm-4"><label><b>Enquiry </b></label></div><div ><textarea name="enquiry" style="width:50%;" rows="5" required></textarea></div><button type="submit" class="btn btn-info">SUBMIT </button><br/>
+		</div></fieldset></form>
+	</div>
+
+</div>
+</div>
+<br />
+<br />
+<br /> <br /> <br />
+</footer>
+
+
+
+
+
+
+
+</body>
+</html>
