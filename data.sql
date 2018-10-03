@@ -2,7 +2,7 @@ CREATE TABLE customer_database(
 	Name varchar(16) NOT NULL,
 	Email varchar(32) NOT NULL,
 	Mobile_No varchar(10),
-	Address varchar(128),
+	Address varchar(256),
 	password varchar(256) NOT NULL,
 	PRIMARY KEY (Mobile_No)
 );
